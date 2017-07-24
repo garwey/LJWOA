@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "department")
 public class Department {
@@ -22,15 +24,15 @@ public class Department {
 	private Long id;
 	private String name;
 	private String description;
-	@ManyToOne(cascade = CascadeType.ALL)
+	@ManyToOne
 	@JoinColumn(name = "parent_id")
 	private Department parent;
 	@ElementCollection(targetClass = User.class)
-	@CollectionTable(name = "department_users", joinColumns = @JoinColumn(name = "user_id") )
+	@CollectionTable(name = "department_users")
 	@Column(name = "users")
 	private Set<User> users;
 	@ElementCollection(targetClass = Department.class)
-	@CollectionTable(name = "department_users", joinColumns = @JoinColumn(name = "department_id") )
+	@CollectionTable(name = "children")
 	@Column(name = "children")
 	private Set<Department> children;
 

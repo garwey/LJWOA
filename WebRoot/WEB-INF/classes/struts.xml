@@ -1,5 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
 <struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.action.extension" value="action" />
+	<package name="default" namespace="/" extends="struts-default">
+		<action name="test" class="testAction" method="test">
+			<result name="success">/WEB-INF/jsp/test/test.jsp</result>
+		</action>
+
+		<!-- 部门管理 -->
+		<action name="department_*" class="departmentAction" method="{1}">
+			<result name="list">/WEB-INF/jsp/departmentAction/list.jsp</result>
+			<result name="saveUI">/WEB-INF/jsp/departmentAction/saveUI.jsp</result>
+			<result name="toList" type="redirectAction">department_list?parentId=${parentId}
+			</result>
+		</action>
+	</package>
 
 </struts>    

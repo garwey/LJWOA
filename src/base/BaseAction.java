@@ -5,13 +5,14 @@ import java.lang.reflect.ParameterizedType;
 import javax.annotation.Resource;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.opensymphony.xwork2.ModelDriven;
 
 import service.DepartmentService;
 import service.RoleService;
 import service.UserService;
 
 @SuppressWarnings("serial")
-public class BaseAction<T> extends ActionSupport {
+public class BaseAction<T> extends ActionSupport implements ModelDriven<T> {
 	protected T model;
 
 	@SuppressWarnings("unchecked")
