@@ -37,14 +37,14 @@ public class DepartmentServiceImpl extends DaoSupportImpl<Department> implements
 	@Override
 	public void delete(Long id) {
 		Department d = getById(id);
-		// 先删子部门
+		// 先删除子部门
 		Set<Department> children = d.getChildren();
 		if (children != null) {
 			for (Department temp : children) {
 				getSession().delete(getById(temp.getId()));
 			}
 		}
-		// 删父部门中的相关记录
+		// 删除父部门中的相关记录
 		Department parent = d.getParent();
 		if (parent != null)
 			parent.getChildren().remove(d);

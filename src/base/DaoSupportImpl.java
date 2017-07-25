@@ -55,13 +55,13 @@ public class DaoSupportImpl<T> implements DaoSupport<T> {
 	public List<T> getByIds(Long[] ids) {
 		if (ids == null || ids.length == 0)
 			return Collections.EMPTY_LIST;
-		return getSession().createQuery("FROM" + clazz.getSimpleName() + "WHERE id IN (:ids)")
+		return getSession().createQuery("FROM " + clazz.getSimpleName() + " WHERE id IN (:ids)")
 				.setParameterList("ids", ids).list();
 	}
 
 	@Override
 	public List<T> findAll() {
-		return getSession().createQuery("FROM" + clazz.getSimpleName()).list();
+		return getSession().createQuery("FROM " + clazz.getSimpleName()).list();
 	}
 
 }

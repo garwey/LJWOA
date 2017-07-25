@@ -7,8 +7,6 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -32,8 +30,7 @@ public class User {
 	private Set<Role> roles;
 	private String loginName;
 	private String password;
-	@Enumerated(EnumType.STRING)
-	private Gender gender;
+	private String gender;
 	private String phoneNumber;
 	private String email;
 	private String description;
@@ -86,11 +83,11 @@ public class User {
 		this.password = password;
 	}
 
-	public Gender getGender() {
+	public String getGender() {
 		return gender;
 	}
 
-	public void setGender(Gender gender) {
+	public void setGender(String gender) {
 		this.gender = gender;
 	}
 
@@ -116,20 +113,5 @@ public class User {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-}
-
-enum Gender {
-	male("ÄÐ"), female("Å®");
-
-	private String name;
-
-	private Gender(String name) {
-		this.name = name;
-	}
-
-	public String getName() {
-		return this.name;
 	}
 }
